@@ -38,7 +38,6 @@ public class FilmesDAO {
     } 
     
     public void cadastrarFilme(Filmes filme) {
-        
         try {
             Connection conexao = Conexao.conectar();
             PreparedStatement stmt = null;
@@ -57,5 +56,32 @@ public class FilmesDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }      
+    }
+    
+    public Filmes selecionarFilme(int id) {
+        Filmes filmeSelecionado = new Filmes();
+        try {
+            Connection conn = conexao.Conexao.conectar();
+            PreparedStatement stmt = null;
+            ResultSet rs = null;
+            
+            stmt = conn.prepareStatement("SELECT * FROM film WHERE film_id = ?");
+            stmt.setInt(1, id);
+                    
+            rs = stmt.executeQuery();
+            if(rs.next()) {
+                filmeSelecionado.setTitle(rs.getString("title"));
+                filmeSelecionado.setDescription(rs.getString("description"));
+                filmeSelecionado.setRelease_date(rs.getInt("release_year"));
+            }
+            
+            rs.close();
+            stmt.close();
+            conn.close();
+            
+        } catch(SQLException e) {
+            e.printStackTrace();
+        }
+        return filmeSelecionado;
     }
 }

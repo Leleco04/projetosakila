@@ -11,6 +11,11 @@
                     integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
                     crossorigin="anonymous">
                 <title>JSP Page</title>
+                <style>
+            a {
+                text-decoration: none;
+            }
+        </style>
             </head>
 
             <body>
@@ -24,15 +29,24 @@
                             <th scope="col">Nome</th>
                             <th scope="col">Descrição</th>
                             <th scope="col">Ano de lançamento</th>
+                            <th scope="col">Ações</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <c:forEach begin="1000" var="filme" items="${filmes}">
+                        <c:forEach var="filme" items="${filmes}">
                             <tr>
                                 <td scope="row">${filme.film_id}</td>
                                 <td>${filme.title}</td>
                                 <td>${filme.description}</td>
                                 <td>${filme.release_date}</td>
+                                <td>
+                                    <a href="./editar?filme=${filme.film_id}">
+                                        <button type="submit" class="btn btn-warning me-3">Editar</button>
+                                    </a>
+                                    <a href="./excluir?filme=${filme.film_id}">
+                                        <button type="submit" class="btn btn-danger">Excluir</button>
+                                    </a>
+                                </td>
                             </tr>
                         </c:forEach>
                     </tbody>
