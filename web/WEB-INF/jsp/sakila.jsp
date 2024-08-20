@@ -12,10 +12,10 @@
                     crossorigin="anonymous">
                 <title>JSP Page</title>
                 <style>
-            a {
-                text-decoration: none;
-            }
-        </style>
+                    a {
+                        text-decoration: none;
+                    }
+                </style>
             </head>
 
             <body>
