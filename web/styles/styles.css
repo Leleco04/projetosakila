@@ -1,0 +1,21 @@
+#formulario {
+    width: 25%;
+    border: 1px solid #fff;
+    padding: 3rem;
+    border-radius: 10px;
+    box-shadow: 0 0 50px 1px #fff;
+}   
+body {
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 100%, rgba(0,212,255,1) 100%);
+}
+a {
+    text-decoration: none;
+}
+.titulo {
+    color: #fff;
+    font-size: 50px;
+    font-weight: bold;
+}
+.cadastro-container, .editar-container{
+    margin-top: 10rem;
+}

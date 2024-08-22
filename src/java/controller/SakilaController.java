@@ -55,7 +55,8 @@ public class SakilaController extends HttpServlet {
             request.setAttribute("title", filmeAtual.getTitle());
             request.setAttribute("description", filmeAtual.getDescription());
             request.setAttribute("release_year", filmeAtual.getRelease_date());
-            request.setAttribute("film_id", id);
+            request.setAttribute("filme", id);
+            // request.setAttribute("film_id", id);
             request.getRequestDispatcher("/WEB-INF/jsp/editar.jsp").forward(request, response);
         } else if(paginaAtual.equals("/excluir")) {
             int id = Integer.parseInt(request.getParameter("filme"));
@@ -90,7 +91,8 @@ public class SakilaController extends HttpServlet {
             
         } else if(paginaAtual.equals("/editar")) {
             
-            int id = Integer.parseInt(request.getParameter("film_id"));
+            int id = Integer.parseInt(request.getParameter("filme"));
+            // int id = Integer.parseInt(request.getParameter("film_id"));
             novoFilme.setTitle(request.getParameter("title"));
             novoFilme.setDescription(request.getParameter("description"));
             novoFilme.setRelease_date(Integer.valueOf(request.getParameter("release_year")));
