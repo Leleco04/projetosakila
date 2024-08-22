@@ -75,6 +75,27 @@ public class FilmesDAO {
             e.printStackTrace();
         }
     }
+
+    public void editarFilme(Filmes filme, int id) {
+        try {
+            Connection conexao = Conexao.conectar();
+            PreparedStatement stmt = null;
+            
+            stmt = conexao.prepareStatement(
+                    "UPDATE film SET title = ?, description = ?, release_year = ? WHERE film_id = ?"
+            );
+            
+            stmt.setString(1, filme.getTitle());
+            stmt.setString(2, filme.getDescription());
+            stmt.setInt(3, filme.getRelease_date());
+            stmt.setInt(4, id);
+            stmt.executeUpdate();
+            stmt.close();
+            conexao.close();
+        } catch(SQLException e) {
+            e.printStackTrace();
+        }
+    }
     
     public Filmes selecionarFilme(int id) {
         Filmes filmeSelecionado = new Filmes();

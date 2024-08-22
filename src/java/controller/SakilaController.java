@@ -55,6 +55,7 @@ public class SakilaController extends HttpServlet {
             request.setAttribute("title", filmeAtual.getTitle());
             request.setAttribute("description", filmeAtual.getDescription());
             request.setAttribute("release_year", filmeAtual.getRelease_date());
+            request.setAttribute("film_id", id);
             request.getRequestDispatcher("/WEB-INF/jsp/editar.jsp").forward(request, response);
         } else if(paginaAtual.equals("/excluir")) {
             int id = Integer.parseInt(request.getParameter("filme"));
@@ -74,18 +75,28 @@ public class SakilaController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String paginaAtual = request.getServletPath();
+        Filmes novoFilme = new Filmes();
+        FilmesDAO filmes = new FilmesDAO();
         
         if(paginaAtual.equals("/cadastrar")) {
-            Filmes novoFilme = new Filmes();
             
             novoFilme.setTitle(request.getParameter("title"));
             novoFilme.setDescription(request.getParameter("description"));
             novoFilme.setRelease_date(Integer.parseInt(request.getParameter("release_year")));;
 
-            FilmesDAO filmes = new FilmesDAO();
             filmes.cadastrarFilme(novoFilme);
             
-            response.sendRedirect("sakila");    
+            response.sendRedirect("sakila");  
+            
+        } else if(paginaAtual.equals("/editar")) {
+            
+            int id = Integer.parseInt(request.getParameter("film_id"));
+            novoFilme.setTitle(request.getParameter("title"));
+            novoFilme.setDescription(request.getParameter("description"));
+            novoFilme.setRelease_date(Integer.valueOf(request.getParameter("release_year")));
+            filmes.editarFilme(novoFilme, id);
+            response.sendRedirect("sakila"); 
+            
         }
     }
 
